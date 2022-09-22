@@ -36,7 +36,16 @@ namespace API_PAISES.Controllers
             return _context.paises;
 
         }
-
+        [HttpGet("{id}")]
+        public IActionResult GetPaisesById(int id)
+        {
+            Paises paises = _context.paises.FirstOrDefault(paises => paises.Id == id);
+            if (paises != null)
+            {
+                return Ok(paises);
+            }
+            return NotFound();
+        }
     }
 
-}
+    }
